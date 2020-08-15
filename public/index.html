@@ -5,6 +5,9 @@
     <title>ToDoList</title>
     <meta charset="utf-8" />
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="style.css">
+
 
     <meta name="google-signin-scope" content="profile email">
     <meta name="google-signin-client_id"
@@ -13,11 +16,51 @@
 </head>
 
 <body>
+    <header>
+        <div class="container">
+            <div class="header-left">
+                <h1>ToDoリスト改</h1>
+            </div>
+            <div class="header-right">
+                <button id="authorize_button" style="display: none;">ログイン</button>
+                <button id="signout_button" style="display: none;">Sign Out</button>
+            </div>
+        </div>
+    </header>
+    <div class="top-wrapper">
+        <p class="intro">このサイトはToDoリストとカレンダーを連携し、やるべきことを管理しやすくしたサイトです</p>
+    
+        <!--Add buttons to initiate auth sequence and sign out-->
+    
+        <!-- <pre id="content" style="white-space: pre-wrap;"></pre> -->
+        <!-- <div class="form">
+            <p>タイトル</p>
+            <input type="text" id="eventTitle">
+            <p>開始時間</p>
+            <input class="flatpickr" id="startTime" type="text" placeholder="Select Date.." readonly="readonly">
+            <p>終了時間</p>
+            <input class="flatpickr" id="endTime" type="text" placeholder="Select Date.." readonly="readonly">
+            <br>
+            <button type="button" id="submit" onclick="submit()">
+                <font size="3">予定に追加</font>
+            </button>
+        </div> -->
+    </div>
+  
     <div class="g-signin2" data-onsuccess="onSignIn"></div>
     <script src="./signin.js"></script>
 
     <a href="./mylist.html">my list</a>
 
+  
+    <!-- 以下スクリプト -->
+    <script type="text/javascript" src="./src/event.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script type="text/javascript" src="./src/calendar.js"></script>
+    <script async defer src="https://apis.google.com/js/api.js" onload="this.onload=function(){};handleClientLoad()"
+        onreadystatechange="if (this.readyState === 'complete') this.onload()">
+    </script>
+  
     <!-- update the version number as needed -->
     <script defer src="/__/firebase/7.18.0/firebase-app.js"></script>
     <!-- include only the Firebase features as you need -->
@@ -28,5 +71,5 @@
     <!-- initialize the SDK after all desired features are loaded -->
     <script defer src="/__/firebase/init.js"></script>
 </body>
-
+  
 </html>
