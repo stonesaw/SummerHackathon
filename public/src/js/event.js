@@ -121,7 +121,7 @@ function listUpcomingEvents() {
 }
 
 //送信ボタン仮
-function submit() {
+function eventSubmit() {
     var eventTitle = document.getElementById("eventTitle").value;
     var startTime = timeToISOString(document.getElementById("startTime").value);
     var endTime = timeToISOString(document.getElementById("endTime").value);
@@ -223,8 +223,13 @@ function insertEvent(eventTitle, startTime, endTime) {
         'resource': event
     });
     request.execute(function (event) {
-        appendPre('Event created: ' + event.summary);
+        var when = event.start.dateTime;
+        if (!when) {
+            when = event.start.date;
+        }
+        insertToDoList(event.summary + ' (' + when + ')')
     });
+
 }
 
 //イベントを時刻順にソート
