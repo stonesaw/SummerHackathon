@@ -1,6 +1,7 @@
 .btn-sticky {
   margin-left: 25vw;
-  margin-top: 5vw;
+  margin-top:5vw;
+  margin-bottom: 5vw;
   width:50vw;
   height: 10vw;
   padding: 0.5em 0.5em;
@@ -18,7 +19,7 @@
   transform: translateY(2px);
 }
 h1{
-  margin-left: 8vw;
+  margin-left: 6vw;
   font-size: 3vw;
 }
 h2{
