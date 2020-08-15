@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <title>Document</title>
 </head>
+
 <body>
     <p>予定立てるアプリ</p>
 
@@ -26,11 +29,13 @@
     </button>
 
     <!-- 以下スクリプト -->
+    <script type="text/javascript" src="./src/env.js"></script>
     <script type="text/javascript" src="./src/event.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script type="text/javascript" src="./src/calendar.js"></script>
     <script async defer src="https://apis.google.com/js/api.js" onload="this.onload=function(){};handleClientLoad()"
         onreadystatechange="if (this.readyState === 'complete') this.onload()">
-    </script>
+        </script>
 </body>
+
 </html>
