@@ -20,29 +20,27 @@
       <!-- ”onclick”の値を変える -->
     </div>
   </header>
- 
-  <main>
+     
+  
+  <div class="center">
     <div class="todo-maker">
       <p>リンクの追加:</p>
       <input type="text" id="favtext"/>
       <input type="button" id="addurl" value="OK" onclick="bar();"/>
     </div>
-    
-    <div class="center">
-      <div class="todolist">
-        <ul id="FavList"></ul>
-        <button type="button" id="plus" onclick="submit()">＋</button>
-      </div>
 
-
-      <div class="side-bar">
-        <div class="tuuti">通知</div>
-        <a href="https://calendar.google.com/calendar/r">
-          <img src="https://cdn.icon-icons.com/icons2/2119/PNG/512/google_icon_131222.png" class="google">
-        </a>
-      </div>
+    <div class="todo-list">
+      <ul id="FavList"></ul>
     </div>
-  </main>
+    <button type="button" id="plus" onclick="submit()">＋</button>
+    
+    <div class="side-bar">
+      <div class="tuuti">通知</div>
+      <a href="https://calendar.google.com/calendar/r">
+        <img src="https://cdn.icon-icons.com/icons2/2119/PNG/512/google_icon_131222.png" class="google">
+      </a>
+    </div>
+  </div>
 
   <script src="./src/main.js"></script>
   <script type="text/javascript" src="./src/js/env.js"></script>
