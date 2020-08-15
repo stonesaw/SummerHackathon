@@ -133,11 +133,7 @@ function timeToISOString(time) {
 
 }
 
-//開始時間の方が終了時間より早いかの判定
-function checkTimeLength(startTime, endTime) {
-
-}
-
+//ToDo_Hackathonのイベントを列挙
 function listToDoEvents() {
     initToDoCalendar().then(function (responce) {
         gapi.client.calendar.events.list({
