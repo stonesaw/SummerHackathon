@@ -36,8 +36,10 @@ function initClient() {
         // updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
         // authorizeButton.onclick = handleAuthClick;
         signoutButton.onclick = handleSignoutClick;
+        initToDoCalendar().then(function (res) {
+            updateCalenderEvent();
+        });
 
-        //initToDoCalendar();
     }, function (error) {
         appendPre(JSON.stringify(error, null, 2));
     });
@@ -137,23 +139,32 @@ function timeToISOString(time) {
     return words[0] + "T" + words[1] + "+09:00";
 
 }
-
-//ToDo出力（仮)
-function printToDoList() {
-    listToDoEvents().then(function (responce) {
-        if (responce.length > 0) {
-            for (var i in responce) {
-                var when = responce[i].start.dateTime;
-                if (!when) {
-                    when = responce[i].start.date;
+//カレンダーからToDoリストへ(更新)
+function updateCalenderEvent() {
+    if (TODO_CALENDAR_ID) {
+        deleteEventAll();
+        listToDoEvents().then(function (responce) {
+            var noEvents = document.getElementById("noEvents");
+            noEvents.style.display = "none";
+            responce = sortEvents(responce);
+            if (responce.length > 0) {
+                for (var i in responce) {
+                    var when = responce[i].start.dateTime;
+                    if (!when) {
+                        when = responce[i].start.date;
+                    }
+                    insertToDoList(responce[i].summary + ' (' + when + ')')
                 }
-                appendPre(responce[i].summary + ' (' + when + ')')
             }
-        }
-        else {
-            appendPre("Nothing ToDo")
-        }
-    });
+            else {
+                appendPre("Nothing ToDo");
+                var noEvents = document.getElementById("noEvents");
+                noEvents.style.display = "inline";
+            }
+        });
+    } else {
+        initToDoCalendar();
+    }
 }
 
 //ToDo_Hackathonのイベントを取得
@@ -168,7 +179,7 @@ function listToDoEvents() {
 
 //ToDo_HackathonカレンダーのカレンダーIDを取得する。ない場合作成する
 function initToDoCalendar() {
-    gapi.client.calendar.calendarList.list({}).then(function (response) {
+    return gapi.client.calendar.calendarList.list({}).then(function (response) {
         var flag = true;
         for (var temp in response.result.items) {
             appendPre(response.result.items[temp].summary);
@@ -189,9 +200,11 @@ function initToDoCalendar() {
                 });
             }
             else {
+                return -1;
             }
         }
     });
+
 }
 
 ///カレンダーにイベントを追加する
@@ -214,14 +227,41 @@ function insertEvent(eventTitle, startTime, endTime) {
     });
 }
 
+//イベントを時刻順にソート
+function sortEvents(events) {
+    events.sort(function (a, b) {
+        if (a.start.dateTime && b.start.dateTime) {
+            if (a.start.dateTime < b.start.dateTime) return -1;
+            if (a.start.dateTime > b.start.dateTime) return 1;
+            return 0;
+        }
+        else {
+            if (a.start.date < b.start.date) return -1;
+            if (a.start.date > b.start.date) return 1;
+            return 0;
+        }
+    });
+    return events;
+}
+
+//一件のイベントを削除
 function deleteEvent(child) {
     var list = document.getElementById("FavList");
     list.removeChild(child);
 }
 
-function insertTable() {
+//全てのイベントを削除
+function deleteEventAll() {
+    var list = document.getElementById("FavList");
+    while (list.firstChild) {
+        list.removeChild(list.firstChild);
+    }
+}
+
+//イベントを追加
+function insertToDoList(eventTitle) {
     var newAnchor = document.createElement("p");
-    var newTxt = document.createTextNode(document.getElementById("favtext").value);
+    var newTxt = document.createTextNode(eventTitle);
     newAnchor.appendChild(newTxt);
     //newAnchor.setAttribute("id", document.getElementById("favurl").value);
     //newAnchor.setAttribute("target", "_blanc");
