@@ -214,7 +214,12 @@ function insertEvent(eventTitle, startTime, endTime) {
     });
 }
 
-function bar() {
+function deleteEvent(child) {
+    var list = document.getElementById("FavList");
+    list.removeChild(child);
+}
+
+function insertTable() {
     var newAnchor = document.createElement("p");
     var newTxt = document.createTextNode(document.getElementById("favtext").value);
     newAnchor.appendChild(newTxt);
@@ -222,9 +227,16 @@ function bar() {
     //newAnchor.setAttribute("target", "_blanc");
 
     // li 要素の作成
-    var newLi = document.createElement("div");
+    const newLi = document.createElement("div");
     newLi.setAttribute("class", "list-content");
     newLi.appendChild(newAnchor);
+
+    var newb = document.createElement("button");
+    newb.addEventListener("click", () => deleteEvent(newLi));
+    newb.setAttribute("value", "削除");
+    newLi.appendChild(newb);
+    var newTxt = document.createTextNode("削除");
+    newb.appendChild(newTxt);
 
     // リストに追加
     var list = document.getElementById("FavList");
