@@ -1,6 +1,7 @@
 // Client ID and API key from the Developer Console
-var CLIENT_ID = CLIENT_ID;
-var API_KEY = API_KEY;
+//alert("aaaaa");
+// var CLIENT_ID = CLIENT_ID;
+// var API_KEY = API_KEY;
 
 // Array of API discovery doc URLs for APIs used by the quickstart
 var DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"];
@@ -18,6 +19,7 @@ var signoutButton = document.getElementById('signout_button');
 function handleClientLoad() {
     gapi.load('client:auth2', initClient);
 }
+
 /**
  *  Initializes the API client library and sets up sign-in state
  *  listeners.
@@ -137,8 +139,49 @@ function checkTimeLength(startTime, endTime) {
 
 }
 
-function returnMinute(time) {
-    const words = time.split(" ");
+function listToDoEvents() {
+    initToDoCalendar().then(function (responce) {
+        gapi.client.calendar.events.list({
+            'calendarId': responce
+        }).then(function (response) {
+            var events = response.result.items;
+            appendPre('Upcoming events:');
+            if (events.length > 0) {
+                for (i = 0; i < events.length; i++) {
+                    var event = events[i];
+                    var when = event.start.dateTime;
+                    if (!when) {
+                        when = event.start.date;
+                    }
+                    appendPre(event.summary + ' (' + when + ')')
+                }
+            } else {
+                appendPre('No upcoming events found.');
+            }
+        });
+    })
+}
+
+//ToDo_HackathonカレンダーのカレンダーIDを返す。ない場合作成する
+function initToDoCalendar() {
+    return gapi.client.calendar.calendarList.list({}).then(function (response) {
+        var flag = true;
+        for (var temp in response.result.items) {
+            appendPre(response.result.items[temp].summary);
+            if (response.result.items[temp].summary == "ToDo_Hackathon") {
+                return response.result.items[temp].id;
+            }
+        }
+        if (flag) {
+            gapi.client.calendar.calendars.insert({
+                "resource": {
+                    "summary": "ToDo_Hackathon"
+                }
+            }).then(function (response) {
+                return response.id;
+            });
+        }
+    });
 
 }
 
@@ -161,3 +204,5 @@ function insertEvent(eventTitle, startTime, endTime) {
         appendPre('Event created: ' + event.summary);
     });
 }
+
+
