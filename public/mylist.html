@@ -9,8 +9,7 @@
 </head>
 
 <body>
-    <p>予定立てるアプリ</p>
-
+    <h1 style="text-align: center;">ToDo List</h1>
     <!--Add buttons to initiate auth sequence and sign out-->
     <button id="authorize_button" style="display: none;">Authorize</button>
     <button id="signout_button" style="display: none;">Sign Out</button>
@@ -27,6 +26,9 @@
     <button type="button" id="submit" onclick="submit()">
         <font size="3">追加</font>
     </button>
+    <button type="button" id="submit" onclick="push()">
+        <font size="3">テスト</font>
+    </button>
 
     <!-- 以下スクリプト -->
     <script type="text/javascript" src="./src/env.js"></script>
@@ -36,6 +38,17 @@
     <script async defer src="https://apis.google.com/js/api.js" onload="this.onload=function(){};handleClientLoad()"
         onreadystatechange="if (this.readyState === 'complete') this.onload()">
         </script>
+
+    <!-- update the version number as needed -->
+    <script defer src="/__/firebase/7.18.0/firebase-app.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/7.18.0/firebase-auth.js"></script>
+    <script defer src="/__/firebase/7.18.0/firebase-database.js"></script>
+    <script defer src="/__/firebase/7.18.0/firebase-messaging.js"></script>
+    <script defer src="/__/firebase/7.18.0/firebase-storage.js"></script>
+    <!-- initialize the SDK after all desired features are loaded -->
+    <script defer src="/__/firebase/init.js"></script>
+
 </body>
 
 </html>

@@ -16,42 +16,30 @@
 </head>
 
 <body>
-    <header>
-        <div class="container">
-            <div class="header-left">
-                <h1>ToDoリスト改</h1>
-            </div>
-            <div class="header-right">
-                <button id="authorize_button" style="display: none;">ログイン</button>
-                <button id="signout_button" style="display: none;">Sign Out</button>
-            </div>
-        </div>
-    </header>
-    <div class="top-wrapper">
+    <h1>ToDoリスト改</h1>
+    <h2>このサイトはToDoリストとカレンダーを連携し、やるべきことを管理しやすくしたサイトです</h2>
+    <!--Add buttons to initiate auth sequence and sign out-->
+    <button class="btn-sticky" id="authorize_button" style="display: none;">
+        Googleアカウントでログインして
+        <br>
+        今すぐ使用
+    </button>
+    <button href="#" class="btn-sticky" id="hasAuthorized_button" style="display: none;">
+        クリックして今すぐ使用
+    </button>
+    <h2>特徴</h2>
+    <!-- <button id="authorize_button" style="display: none;">Authorize</button> -->
+    <!-- <button id="signout_button" style="display: none;">Sign Out</button> -->
+
+    <pre id="content" style="white-space: pre-wrap;"></pre>
+    <!-- <div class="top-wrapper">
         <p class="intro">このサイトはToDoリストとカレンダーを連携し、やるべきことを管理しやすくしたサイトです</p>
-    
-        <!--Add buttons to initiate auth sequence and sign out-->
-    
-        <!-- <pre id="content" style="white-space: pre-wrap;"></pre> -->
-        <!-- <div class="form">
-            <p>タイトル</p>
-            <input type="text" id="eventTitle">
-            <p>開始時間</p>
-            <input class="flatpickr" id="startTime" type="text" placeholder="Select Date.." readonly="readonly">
-            <p>終了時間</p>
-            <input class="flatpickr" id="endTime" type="text" placeholder="Select Date.." readonly="readonly">
-            <br>
-            <button type="button" id="submit" onclick="submit()">
-                <font size="3">予定に追加</font>
-            </button>
-        </div> -->
-    </div>
-  
-    <div class="g-signin2" data-onsuccess="onSignIn"></div>
+    </div> -->
+
+    <!-- <div class="g-signin2" data-onsuccess="onSignIn"></div>
     <script src="./signin.js"></script>
 
-    <a href="./mylist.html">my list</a>
-
+    <a href="./mylist.html">my list</a> -->
   
     <!-- 以下スクリプト -->
     <script type="text/javascript" src="./src/event.js"></script>
@@ -71,5 +59,5 @@
     <!-- initialize the SDK after all desired features are loaded -->
     <script defer src="/__/firebase/init.js"></script>
 </body>
-  
+
 </html>
