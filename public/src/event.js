@@ -2,6 +2,7 @@
 var CLIENT_ID = ENV_CLIENT_ID;
 var API_KEY = ENV_API_KEY;
 
+var TODO_CALENDAR_ID;
 // Array of API discovery doc URLs for APIs used by the quickstart
 var DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"];
 
@@ -36,6 +37,7 @@ function initClient() {
         updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
         authorizeButton.onclick = handleAuthClick;
         signoutButton.onclick = handleSignoutClick;
+        initToDoCalendar();
     }, function (error) {
         appendPre(JSON.stringify(error, null, 2));
     });
@@ -132,52 +134,55 @@ function timeToISOString(time) {
     return words[0] + "T" + words[1] + "+09:00";
 
 }
-
-//ToDo_Hackathonのイベントを列挙
-function listToDoEvents() {
-    initToDoCalendar().then(function (responce) {
-        gapi.client.calendar.events.list({
-            'calendarId': responce
-        }).then(function (response) {
-            var events = response.result.items;
-            appendPre('Upcoming events:');
-            if (events.length > 0) {
-                for (i = 0; i < events.length; i++) {
-                    var event = events[i];
-                    var when = event.start.dateTime;
-                    if (!when) {
-                        when = event.start.date;
-                    }
-                    appendPre(event.summary + ' (' + when + ')')
-                }
-            } else {
-                appendPre('No upcoming events found.');
+//ToDo出力（仮)
+function printToDoList() {
+    listToDoEvents().then(function (responce) {
+        for (var i in responce) {
+            var when = responce[i].start.dateTime;
+            if (!when) {
+                when = responce[i].start.date;
             }
-        });
-    })
+            appendPre(responce[i].summary + ' (' + when + ')')
+        }
+    });
 }
 
-//ToDo_HackathonカレンダーのカレンダーIDを返す。ない場合作成する
+//ToDo_Hackathonのイベントを取得
+function listToDoEvents() {
+    return gapi.client.calendar.events.list({
+        'calendarId': TODO_CALENDAR_ID
+    }).then(function (response2) {
+        var events = response2.result.items;
+        return events;
+    });
+}
+
+//ToDo_HackathonカレンダーのカレンダーIDを取得する。ない場合作成する
 function initToDoCalendar() {
-    return gapi.client.calendar.calendarList.list({}).then(function (response) {
+    gapi.client.calendar.calendarList.list({}).then(function (response) {
         var flag = true;
         for (var temp in response.result.items) {
             appendPre(response.result.items[temp].summary);
             if (response.result.items[temp].summary == "ToDo_Hackathon") {
-                return response.result.items[temp].id;
+                TODO_CALENDAR_ID = response.result.items[temp].id;
+                flag = false;
+                break
             }
         }
         if (flag) {
-            gapi.client.calendar.calendars.insert({
-                "resource": {
-                    "summary": "ToDo_Hackathon"
-                }
-            }).then(function (response) {
-                return response.id;
-            });
+            if (confirm("ToDoカレンダーが見つかりませんでした。新しく作成してよろしいですか？")) {
+                gapi.client.calendar.calendars.insert({
+                    "resource": {
+                        "summary": "ToDo_Hackathon"
+                    }
+                }).then(function (response) {
+                    respoTODO_CALENDAR_ID = nse.id;
+                });
+            }
+            else {
+            }
         }
     });
-
 }
 
 ///カレンダーにイベントを追加する
@@ -192,12 +197,10 @@ function insertEvent(eventTitle, startTime, endTime) {
         }
     };
     var request = gapi.client.calendar.events.insert({
-        'calendarId': 'primary',
+        'calendarId': TODO_CALENDAR_ID,
         'resource': event
     });
     request.execute(function (event) {
         appendPre('Event created: ' + event.summary);
     });
 }
-
-
