@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <title>ToDolist</title>
   <link rel="stylesheet" href="./src/css/mylist.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 </head>
 
 <body>
@@ -26,8 +27,21 @@
       <p>カレンダーから読み込み</p>
       <!-- <input type="text" id="favtext" /> -->
       <input type="button" id="addurl" value="更新" onclick="updateCalenderEvent()" />
-    </div>
 
+      <div id="FavBox">
+        <p>タイトル</p>
+        <input type="text" id="eventTitle">
+        <p>開始時間</p>
+        <input class="flatpickr" id="startTime" type="text" placeholder="Select Date.." readonly="readonly">
+        <p>終了時間</p>
+        <input class="flatpickr" id="endTime" type="text" placeholder="Select Date.." readonly="readonly">
+        <br>
+        <button type="button" onclick="eventSubmit()">
+          <font size="3">追加</font>
+        </button>
+      </div>
+
+    </div>
     <div class="todo-list">
       <ul id="FavList"></ul>
     </div>

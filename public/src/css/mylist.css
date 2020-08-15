@@ -42,7 +42,7 @@ header{
 
 .side-bar{
   width: 20%;
-  margin: 30px;
+  margin: 2vw;
 }
 .tuuti{
   width: 130%;
@@ -66,7 +66,7 @@ header{
 }
 
 div.list-content {
-  background-color: skyblue;
+  background-color: rgb(111, 197, 231);
   border-radius: 10px;
   margin-bottom: 2vw;
   width: 90%;
@@ -74,7 +74,7 @@ div.list-content {
 }
 div.list-content button{
   float: left;
-  margin-left: 100%;
+  margin-left: 101%;
   margin-top: -6%;
   width: 5%;
   height: 70%;
@@ -92,4 +92,11 @@ div#noEvents{
   margin-left: -90vw;
   margin-top: 10vw;
 }
+div.todo-maker{
+  width:15vw;
+  padding-left:1vw;
+  padding-right: 1vw;
+  background-color: rgb(169, 224, 255);
+}
+
 
