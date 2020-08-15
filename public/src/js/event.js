@@ -10,7 +10,6 @@ var DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/
 // included, separated by spaces.
 var SCOPES = "https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/calendar.events";
 
-var authorizeButton = document.getElementById('authorize_button');
 var signoutButton = document.getElementById('signout_button');
 
 /**
@@ -31,13 +30,14 @@ function initClient() {
         discoveryDocs: DISCOVERY_DOCS,
         scope: SCOPES
     }).then(function () {
-        // Listen for sign-in state changes.
-        gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
-        // Handle the initial sign-in state.
-        updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
-        authorizeButton.onclick = handleAuthClick;
+        // // Listen for sign-in state changes.
+        // gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
+        // // Handle the initial sign-in state.
+        // updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
+        // authorizeButton.onclick = handleAuthClick;
         signoutButton.onclick = handleSignoutClick;
-        initToDoCalendar();
+
+        //initToDoCalendar();
     }, function (error) {
         appendPre(JSON.stringify(error, null, 2));
     });
@@ -47,15 +47,15 @@ function initClient() {
  *  Called when the signed in status changes, to update the UI
  *  appropriately. After a sign-in, the API is called.
  */
-function updateSigninStatus(isSignedIn) {
-    if (isSignedIn) {
-        authorizeButton.style.display = 'none';
-        signoutButton.style.display = 'block';
-    } else {
-        authorizeButton.style.display = 'block';
-        signoutButton.style.display = 'none';
-    }
-}
+// function updateSigninStatus(isSignedIn) {
+//     if (isSignedIn) {
+//         authorizeButton.style.display = 'none';
+//         signoutButton.style.display = 'block';
+//     } else {
+//         authorizeButton.style.display = 'block';
+//         signoutButton.style.display = 'none';
+//     }
+// }
 
 /**
  *  Sign in the user upon button click.
@@ -68,7 +68,10 @@ function handleAuthClick(event) {
  *  Sign out the user upon button click.
  */
 function handleSignoutClick(event) {
-    gapi.auth2.getAuthInstance().signOut();
+
+    gapi.auth2.getAuthInstance().signOut().then(function (res) {
+        location.href = "../../index.html";
+    });
 }
 
 /**
