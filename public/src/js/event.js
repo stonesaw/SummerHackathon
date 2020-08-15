@@ -213,3 +213,20 @@ function insertEvent(eventTitle, startTime, endTime) {
         appendPre('Event created: ' + event.summary);
     });
 }
+
+function bar() {
+    var newAnchor = document.createElement("p");
+    var newTxt = document.createTextNode(document.getElementById("favtext").value);
+    newAnchor.appendChild(newTxt);
+    //newAnchor.setAttribute("id", document.getElementById("favurl").value);
+    //newAnchor.setAttribute("target", "_blanc");
+
+    // li 要素の作成
+    var newLi = document.createElement("div");
+    newLi.setAttribute("class", "list");
+    newLi.appendChild(newAnchor);
+
+    // リストに追加
+    var list = document.getElementById("FavList");
+    list.appendChild(newLi);
+}

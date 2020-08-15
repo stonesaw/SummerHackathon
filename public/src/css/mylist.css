@@ -58,3 +58,14 @@ header{
   border-radius: 80px;
   padding: 0 0 auto auto;
 }
+div.list{
+  background-color: rgb(32, 29, 216);
+  
+  width: 40vw;
+  height: 5vw;
+}
+div.list p{
+  padding-top: 1vw;
+  color:white;
+  text-align: center;
+}
