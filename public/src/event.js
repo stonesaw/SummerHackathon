@@ -134,15 +134,21 @@ function timeToISOString(time) {
     return words[0] + "T" + words[1] + "+09:00";
 
 }
+
 //ToDo出力（仮)
 function printToDoList() {
     listToDoEvents().then(function (responce) {
-        for (var i in responce) {
-            var when = responce[i].start.dateTime;
-            if (!when) {
-                when = responce[i].start.date;
+        if (responce.length > 0) {
+            for (var i in responce) {
+                var when = responce[i].start.dateTime;
+                if (!when) {
+                    when = responce[i].start.date;
+                }
+                appendPre(responce[i].summary + ' (' + when + ')')
             }
-            appendPre(responce[i].summary + ' (' + when + ')')
+        }
+        else {
+            appendPre("Nothing ToDo")
         }
     });
 }
