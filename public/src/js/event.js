@@ -10,7 +10,7 @@ var DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/
 // included, separated by spaces.
 var SCOPES = "https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/calendar.events";
 
-var signoutButton = document.getElementById('signout_button');
+var signoutButton = document.getElementById('signout-button');
 
 /**
 *  On load, called to load the auth2 library and API client library.
@@ -223,7 +223,7 @@ function bar() {
 
     // li 要素の作成
     var newLi = document.createElement("div");
-    newLi.setAttribute("class", "list");
+    newLi.setAttribute("class", "list-content");
     newLi.appendChild(newAnchor);
 
     // リストに追加

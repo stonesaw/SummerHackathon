@@ -1,11 +1,14 @@
-
-.hed-box{
+header{
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  height: 10%;
 }
-#top,
-#signout_button{
+main{
+  height: 90%;
+}
+#top-button,
+#signout-button{
   width: 100px;
   height: 30px;
   margin: 30px;
@@ -21,12 +24,12 @@
   background-color: white; */
   position: relative;
 }
-article{
+.todolist{
   width: 70%;
   margin-left: 15%;
   /* margin: 20px; */
 }
-aside{
+.side-bar{
   width: 20%;
   margin: 30px;
 }
@@ -58,13 +61,13 @@ header{
   border-radius: 80px;
   padding: 0 0 auto auto;
 }
-div.list{
+div.list-content {
   background-color: rgb(32, 29, 216);
-  
+  border-radius: 10px;
   width: 40vw;
   height: 5vw;
 }
-div.list p{
+div.list-content p{
   padding-top: 1vw;
   color:white;
   text-align: center;
