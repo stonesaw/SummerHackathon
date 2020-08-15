@@ -4,9 +4,16 @@
     <title>ToDoList</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id" content="339576039933-7hk9p7hi6aevq7kv13q6j43b8cug37co.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
 </head>
 
 <body>
+    <div class="g-signin2" data-onsuccess="onSignIn"></div>
+    <script src="./signin.js"></script>
+
     <a href="./mylist.html">my list</a>
 
     <!-- update the version number as needed -->
