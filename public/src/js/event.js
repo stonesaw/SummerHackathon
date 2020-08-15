@@ -153,7 +153,7 @@ function updateCalenderEvent() {
                     if (!when) {
                         when = responce[i].start.date;
                     }
-                    insertToDoList(responce[i].summary + ' (' + when + ')')
+                    insertToDoList(responce[i])
                 }
             }
             else {
@@ -207,7 +207,7 @@ function initToDoCalendar() {
 
 }
 
-///カレンダーにイベントを追加する
+//カレンダーにイベントを追加する
 function insertEvent(eventTitle, startTime, endTime) {
     var event = {
         "summary": eventTitle,
@@ -227,8 +227,19 @@ function insertEvent(eventTitle, startTime, endTime) {
         if (!when) {
             when = event.start.date;
         }
-        insertToDoList(event.summary + ' (' + when + ')')
+        updateCalenderEvent();
     });
+
+}
+//カレンダーから削除する
+function deleteCalendarEvent(eventId) {
+    return gapi.client.calendar.events.delete({
+        "calendarId": TODO_CALENDAR_ID,
+        "eventId": eventId
+    }).then(function (response) {
+        appendPre("deleted");
+    },
+        function (err) { console.error("Execute error", err); });
 
 }
 
@@ -251,8 +262,10 @@ function sortEvents(events) {
 
 //一件のイベントを削除
 function deleteEvent(child) {
-    var list = document.getElementById("FavList");
-    list.removeChild(child);
+    deleteCalendarEvent(child.id).then(function (res) {
+        updateCalenderEvent();
+    });
+
 }
 
 //全てのイベントを削除
@@ -264,9 +277,9 @@ function deleteEventAll() {
 }
 
 //イベントを追加
-function insertToDoList(eventTitle) {
+function insertToDoList(event) {
     var newAnchor = document.createElement("p");
-    var newTxt = document.createTextNode(eventTitle);
+    var newTxt = document.createTextNode(event.summary);
     newAnchor.appendChild(newTxt);
     //newAnchor.setAttribute("id", document.getElementById("favurl").value);
     //newAnchor.setAttribute("target", "_blanc");
@@ -274,6 +287,7 @@ function insertToDoList(eventTitle) {
     // li 要素の作成
     const newLi = document.createElement("div");
     newLi.setAttribute("class", "list-content");
+    newLi.setAttribute("id", event.id);
     newLi.appendChild(newAnchor);
 
     var newb = document.createElement("button");
