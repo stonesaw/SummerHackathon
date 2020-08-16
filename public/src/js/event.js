@@ -280,7 +280,12 @@ function deleteEventAll() {
 function dateText(time) {
     var time1 = time.split("T");
     var time2 = time1[1].slice(0, -4);
-    return time1[0] + " " + time2;
+    var time3 = time2.slice(0, 2);
+    var time4 = parseInt(time3, 10) + 9;
+    if (time4 > 23) {
+        time4 = time4 - 24;
+    }
+    return time1[0] + " " + time4.toString() + time2.slice(2);
 }
 
 //イベントを追加
