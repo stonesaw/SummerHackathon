@@ -41,7 +41,7 @@ function initClient() {
         });
 
     }, function (error) {
-        appendPre(JSON.stringify(error, null, 2));
+        //appendPre(JSON.stringify(error, null, 2));
     });
 }
 
@@ -82,11 +82,11 @@ function handleSignoutClick(event) {
  *
  * @param {string} message Text to be placed in pre element.
  */
-function appendPre(message) {
-    var pre = document.getElementById('content');
-    var textContent = document.createTextNode(message + '\n');
-    pre.appendChild(textContent);
-}
+// function appendPre(message) {
+//     var pre = document.getElementById('content');
+// var textContent = document.createTextNode(message + '\n');
+// pre.appendChild(textContent);
+// }
 
 
 /**
@@ -104,7 +104,7 @@ function listUpcomingEvents() {
         'orderBy': 'startTime'
     }).then(function (response) {
         var events = response.result.items;
-        appendPre('Upcoming events:');
+        //appendPre('Upcoming events:');
         if (events.length > 0) {
             for (i = 0; i < events.length; i++) {
                 var event = events[i];
@@ -112,10 +112,10 @@ function listUpcomingEvents() {
                 if (!when) {
                     when = event.start.date;
                 }
-                appendPre(event.summary + ' (' + when + ')')
+                //appendPre(event.summary + ' (' + when + ')')
             }
         } else {
-            appendPre('No upcoming events found.');
+            //appendPre('No upcoming events found.');
         }
     });
 }
@@ -157,7 +157,7 @@ function updateCalenderEvent() {
                 }
             }
             else {
-                appendPre("Nothing ToDo");
+                //appendPre("Nothing ToDo");
                 var noEvents = document.getElementById("noEvents");
                 noEvents.style.display = "inline";
             }
@@ -182,7 +182,7 @@ function initToDoCalendar() {
     return gapi.client.calendar.calendarList.list({}).then(function (response) {
         var flag = true;
         for (var temp in response.result.items) {
-            appendPre(response.result.items[temp].summary);
+            //appendPre(response.result.items[temp].summary);
             if (response.result.items[temp].summary == "ToDo_Hackathon") {
                 TODO_CALENDAR_ID = response.result.items[temp].id;
                 flag = false;
@@ -237,7 +237,7 @@ function deleteCalendarEvent(eventId) {
         "calendarId": TODO_CALENDAR_ID,
         "eventId": eventId
     }).then(function (response) {
-        appendPre("deleted");
+        //appendPre("deleted");
     },
         function (err) { console.error("Execute error", err); });
 
