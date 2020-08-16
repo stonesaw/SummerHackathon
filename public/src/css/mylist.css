@@ -71,6 +71,7 @@ div.list-content {
   width: 90%;
   height: 20vh;
 }
+
 div.list-content button{
   float: left;
   margin-left: 101%;
@@ -78,8 +79,8 @@ div.list-content button{
   width: 5%;
   height: 70%;
 }
+
 div.list-content p{
-  
   color:white;
   font-size: 32px;
   text-align: center;
@@ -88,7 +89,7 @@ div.list-content p{
 div#noEvents{
   display: none;
   font-size: 40px;
-  margin-left: -90vw;
+  margin-left: -110vw;
   margin-top: 10vw;
 }
 div.todo-maker{
