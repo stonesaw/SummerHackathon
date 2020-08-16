@@ -39,20 +39,24 @@ header{
   /* position: relative; */
   overflow: scroll;
 }
+div#noEvents{
+  text-align: center;
+  display: none;
+  font-size: 40px;
+  width: 190vw;
+  margin-top: 10vw;
+}
 
 .side-bar{
   border-block-color: black;
   border-left:black solid medium;
-  width: 15vw;
+  width: 10vw;
 }
 .tuuti{
   height: 100px;
-  margin-right: 20px;
+  /* margin-right: 20px; */
   margin-bottom: 90px;
   /* background-color: white; */
-}
-div.google{
-  padding-right: 1vw;
 }
 header{
   border-bottom: 2px solid;
@@ -85,14 +89,7 @@ div.list-content p{
   text-align: center;
 }
 
-div#noEvents{
-  display: none;
-  font-size: 40px;
-  width: 190vw;
-  padding-right: 15vw;
-  padding-left:-5vw;
-  margin-top: 10vw;
-}
+
 div.todo-maker{
   width:15vw;
   padding-left:1vw;
