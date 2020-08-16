@@ -30,7 +30,6 @@ var signoutButton = document.getElementById('hasAuthorized_button');
 *  On load, called to load the auth2 library and API client library.
 */
 function handleClientLoad() {
-
     gapi.load('client:auth2', initClient);
 }
 
@@ -52,7 +51,7 @@ function initClient() {
         authorizeButton.onclick = handleAuthClick;
         signoutButton.onclick = handleSignoutClick;
     }, function (error) {
-
+        alert(error.details);
     });
 }
 
@@ -86,3 +85,5 @@ function handleSignoutClick(event) {
     location.href = "./mylist.html";
     //gapi.auth2.getAuthInstance().signOut();
 }
+
+
