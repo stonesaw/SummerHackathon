@@ -92,13 +92,13 @@ div.list-content {
   border-radius: 10px;
   margin-bottom: 2vw;
   width: 90%;
-  height: 20vh;
+  height: 10vw;
 }
 
 div.list-content button{
   float: left;
   margin-left: 101%;
-  margin-top: -6%;
+  margin-top: -12%;
   width: 5%;
   height: 70%;
 }
