@@ -51,21 +51,29 @@ header{
 .todo-list::-webkit-scrollbar {  /* Chrome, Safari 対応 */
   display:none;
 }
+div#noEvents{
+  text-align: center;
+  display: none;
+  font-size: 40px;
+  width: 190vw;
+  margin-top: 10vw;
+}
 
 .side-bar{
   background-color: #eee;
   margin: 0px;
   padding: 2vw;
   width: 10vw;
-  /* border-left: #000; */
-  /* border-width: 3px; */
+  /* border-block-color: black; */
+  /* border-left:black solid medium; */
 }
 .tuuti{
   height: 100px;
-  margin-right: 20px;
+  /* margin-right: 20px; */
   margin-bottom: 90px;
   /* background-color: white; */
 }
+
 div.google{
   padding-right: 1vw;
 }
@@ -97,14 +105,7 @@ div.list-content p{
   text-align: center;
 }
 
-div#noEvents{
-  display: none;
-  font-size: 40px;
-  width: 190vw;
-  padding-right: 15vw;
-  padding-left:-5vw;
-  margin-top: 10vw;
-}
+
 div.todo-maker{
   width:15vw;
   padding-left:1vw;
