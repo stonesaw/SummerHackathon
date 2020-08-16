@@ -78,6 +78,10 @@ div.google{
   padding-right: 1vw;
 }
 
+div.google img {
+  width: 100%;
+}
+
 #plus{
   border-radius: 80px;
   padding: 0 0 auto auto;
