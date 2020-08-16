@@ -276,6 +276,13 @@ function deleteEventAll() {
     }
 }
 
+//時間
+function dateText(time) {
+    var time1 = time.split("T");
+    var time2 = time1[1].slice(0, -4);
+    return time1[0] + " " + time2;
+}
+
 //イベントを追加
 function insertToDoList(event) {
     var newAnchor = document.createElement("p");
@@ -290,12 +297,24 @@ function insertToDoList(event) {
     newLi.setAttribute("id", event.id);
     newLi.appendChild(newAnchor);
 
+    var newAnchor2 = document.createElement("p");
+    if (event.start.dateTime) {
+        var newTxt = document.createTextNode(dateText(event.start.dateTime) + " ~ " + dateText(event.end.dateTime));
+        newAnchor2.appendChild(newTxt);
+    } else {
+        var newTxt = document.createTextNode(dateText(event.start.date) + " ~ " + dateText(event.end.date));
+        newAnchor2.appendChild(newTxt);
+    }
+    newLi.appendChild(newAnchor2);
+
+
     var newb = document.createElement("button");
     newb.addEventListener("click", () => deleteEvent(newLi));
     newb.setAttribute("value", "削除");
     newLi.appendChild(newb);
     var newTxt = document.createTextNode("削除");
     newb.appendChild(newTxt);
+
 
     // リストに追加
     var list = document.getElementById("FavList");
