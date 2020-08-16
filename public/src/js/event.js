@@ -307,7 +307,7 @@ function insertToDoList(event) {
         var newTxt = document.createTextNode(dateText(event.start.dateTime) + " ~ " + dateText(event.end.dateTime));
         newAnchor2.appendChild(newTxt);
     } else {
-        var newTxt = document.createTextNode(dateText(event.start.date) + " ~ " + dateText(event.end.date));
+        // var newTxt = document.createTextNode(dateText(event.start.date) + " ~ " + dateText(event.end.date));
         newAnchor2.appendChild(newTxt);
     }
     newLi.appendChild(newAnchor2);
