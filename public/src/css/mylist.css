@@ -53,10 +53,12 @@ header{
 }
 
 .side-bar{
-  width: 5vw;
+  background-color: #eee;
   margin: 0px;
   padding: 2vw;
-  background-color: #eee;
+  border-block-color: black;
+  border-left:black solid medium;
+  width: 15vw;
 }
 .tuuti{
   height: 100px;
@@ -64,10 +66,8 @@ header{
   margin-bottom: 90px;
   /* background-color: white; */
 }
-
-.google{
-  width: 60px;
-  height: 60px;
+div.google{
+  padding-right: 1vw;
 }
 
 #plus{
@@ -100,7 +100,9 @@ div.list-content p{
 div#noEvents{
   display: none;
   font-size: 40px;
-  margin-left: -110vw;
+  width: 190vw;
+  padding-right: 15vw;
+  padding-left:-5vw;
   margin-top: 10vw;
 }
 div.todo-maker{
